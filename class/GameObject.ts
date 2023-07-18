@@ -9,6 +9,7 @@ class GameObject extends EventEmitter{
   components: Array<Component>;
   children: Array<GameObject>;
   parent: GameObject | null;
+  childrenCount: number = 0;
   name: string;
   id: string;
 
@@ -28,15 +29,24 @@ class GameObject extends EventEmitter{
 
   createEmptyChild( name: string ): GameObject {
     let child = new GameObject( this, name );
+    this.childUpdate(1);
 
     this.children.push(child);
     return child;
   }
 
-  remove(): void {
+  childUpdate( amount: number ): void {
     if(this.parent)
+      this.parent.childUpdate( amount );
+
+    this.childrenCount += amount;
+  }
+
+  remove(): void {
+    if(this.parent){
       this.parent.children = this.parent.children.filter(x => x !== this);
-    else
+      this.childUpdate(-1);
+    } else
       throw new Error('Cannot remove a GameObject without a parent');
   }
 }
