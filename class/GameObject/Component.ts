@@ -1,6 +1,12 @@
+import { GameObject } from "../GameObject";
+
 class Component {
-  constructor(){
-    
+  gameObject: GameObject;
+  name: string = 'Unkown';
+  colour: string = '#ffc3c3';
+
+  constructor( go: GameObject ){
+    this.gameObject = go;
   }
 }
 

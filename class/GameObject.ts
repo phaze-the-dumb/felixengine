@@ -1,11 +1,11 @@
-import { EventEmitter } from "../base/EventEmitter";
 import { Component } from './GameObject/Component';
+import { Transform } from './GameObject/Transform';
 
 let randomUUID = (): string => {
   return Math.random().toString().replace('0.', '');
 }
 
-class GameObject extends EventEmitter{
+class GameObject{
   components: Array<Component>;
   children: Array<GameObject>;
   parent: GameObject | null;
@@ -13,10 +13,11 @@ class GameObject extends EventEmitter{
   name: string;
   id: string;
 
-  constructor( parent: GameObject | null, name?: string ){
-    super();
+  transform: Transform;
 
-    this.components = [];
+  constructor( parent: GameObject | null, name?: string ){
+    this.transform = new Transform(this);
+    this.components = [ this.transform ];
     this.children = [];
     this.parent = parent;
     this.name = name || 'Empty GameObject';
@@ -40,6 +41,13 @@ class GameObject extends EventEmitter{
       this.parent.childUpdate( amount );
 
     this.childrenCount += amount;
+  }
+
+  addComponent( component: any ): Component {
+    let h = new component()
+
+    this.components.push(h);
+    return h;
   }
 
   remove(): void {
