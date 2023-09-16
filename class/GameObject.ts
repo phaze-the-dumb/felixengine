@@ -12,7 +12,6 @@ class GameObject{
   childrenCount: number = 0;
   name: string;
   id: string;
-
   transform: Transform;
 
   constructor( parent: GameObject | null, name?: string ){

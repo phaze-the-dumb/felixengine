@@ -31,7 +31,7 @@ class RenderObject{
       this.canvas.height = bounds.height;
 
       this.ctx.translate(this.canvas.width / 2, this.canvas.height / 2);
-    }, 10);
+    }, 100);
   }
 
   render(){

@@ -3,10 +3,13 @@ import { GameObject } from "../GameObject";
 class Component {
   gameObject: GameObject;
   name: string = 'Unkown';
-  colour: string = '#ffc3c3';
+  publicValues: any;
+  definePublicValues: any;
 
   constructor( go: GameObject ){
     this.gameObject = go;
+    this.publicValues = {};
+    this.definePublicValues = {};
   }
 }
 

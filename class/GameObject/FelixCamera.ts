@@ -6,7 +6,6 @@ class FelixCamera extends Component{
     super(go);
 
     this.name = 'Camera';
-    this.colour = '#c5ffc3';
   }
 
   renderToScreen( ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement ): void {
