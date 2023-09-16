@@ -42,11 +42,16 @@ class GameObject{
     this.childrenCount += amount;
   }
 
-  addComponent( component: any ): Component {
-    let h = new component()
+  addComponent<Type extends Component>( component: any ): Type {
+    let h = new component();
 
     this.components.push(h);
     return h;
+  }
+
+  getComponent<Type extends Component>( component: any ): Type {
+    let h = this.components.find(x => x instanceof component);
+    return h as any;
   }
 
   remove(): void {
