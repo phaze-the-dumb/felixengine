@@ -5,6 +5,8 @@ class Component {
   name: string = 'Unkown';
   publicValues: any;
   definePublicValues: any;
+  requires: string[] = [];
+  render?: ( ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement ) => void;
 
   constructor( go: GameObject ){
     this.gameObject = go;

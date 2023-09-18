@@ -13,6 +13,7 @@ class GameObject{
   name: string;
   id: string;
   transform: Transform;
+  renderables: Component[] = [];
 
   constructor( parent: GameObject | null, name?: string ){
     this.transform = new Transform(this);
@@ -43,7 +44,7 @@ class GameObject{
   }
 
   addComponent<Type extends Component>( component: any ): Type {
-    let h = new component();
+    let h = new component(this);
 
     this.components.push(h);
     return h;

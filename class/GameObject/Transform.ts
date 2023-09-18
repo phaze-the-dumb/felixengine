@@ -2,11 +2,12 @@ import { Component } from "./Component";
 import { GameObject } from "../GameObject";
 
 import { Position } from "../Position";
-import { Rotation } from "../Rotation";
+// import { Rotation } from "../Rotation";
 
 class Transform extends Component {
   position: Position;
-  rotation: Rotation;
+  scale: Position;
+  // rotation: Rotation;
 
   constructor( go: GameObject ){
     super(go);
@@ -14,11 +15,13 @@ class Transform extends Component {
     this.name = 'Transform';
 
     this.position = new Position(0, 0);
-    this.rotation = new Rotation(0);
+    this.scale = new Position(1, 1);
+    // this.rotation = new Rotation(0);
 
     this.definePublicValues = {
       position: 'Position',
-      rotation: 'Rotation'
+      scale: 'Position',
+      // rotation: 'Rotation',
     };
   }
 }
