@@ -1,8 +1,11 @@
 import { GameObject } from "./class/GameObject";
 
 class FelixScene extends GameObject{
+  renderers: GameObject[] = [];
+
   constructor(){
-    super(null, 'New Scene');
+    super(null, null, 'New Scene');
+    this.scene = this;
   }
 
   findChildInScene( childId: string ){
