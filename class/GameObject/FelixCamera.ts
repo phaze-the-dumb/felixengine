@@ -1,6 +1,5 @@
 import Colour from "../Colour";
 import { GameObject } from "../GameObject";
-import { BoundingBox } from "./Bounding";
 import { Component } from "./Component";
 
 class FelixCamera extends Component{
