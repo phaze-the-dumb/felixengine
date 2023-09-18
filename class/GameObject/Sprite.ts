@@ -1,6 +1,7 @@
 import { Component } from "./Component";
 import { GameObject } from "../GameObject";
 import { BoundingBox } from "./Bounding";
+import { FelixCamera } from "./FelixCamera";
 
 class Sprite extends Component {
   constructor( go: GameObject ){
@@ -12,14 +13,14 @@ class Sprite extends Component {
     this.gameObject.renderables.push(this);
     this.name = 'Sprite';
 
-<<<<<<< HEAD
-=======
     if(this.gameObject.scene)
       this.gameObject.scene.renderers.push(this.gameObject);
 
->>>>>>> a33e46b9b7c0bccbd225b90ed6ccbc9887fcd037
-    this.render = ( ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement ) => {
-      
+    this.render = ( ctx: CanvasRenderingContext2D, _canvas: HTMLCanvasElement, camera: FelixCamera ) => {
+      let rect = camera.worldToScreenSpaceBounding(this.gameObject.transform);
+
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(rect[0], rect[1], rect[2], rect[3]);
     }
   }
 }

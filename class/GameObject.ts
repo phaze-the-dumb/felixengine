@@ -62,6 +62,9 @@ class GameObject{
     if(this.parent){
       this.parent.children = this.parent.children.filter(x => x !== this);
       this.childUpdate(-1);
+
+      if(!this.scene)return;
+      this.scene.renderers = this.scene.renderers.filter(x => x.id !== this.id);
     } else
       throw new Error('Cannot remove a GameObject without a parent');
   }
