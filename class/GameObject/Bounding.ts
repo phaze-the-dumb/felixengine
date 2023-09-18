@@ -32,9 +32,18 @@ class BoundingBox extends Component {
   }
 
   inScreen( camera: FelixCamera ): boolean {
-    
+    let thisRect = this.getRect();
+    let cameraRect = camera.getRect();
 
-    return true;
+    if(
+      cameraRect[0] < thisRect[2] &&
+      cameraRect[1] < thisRect[3] &&
+      cameraRect[2] > thisRect[0] &&
+      cameraRect[3] > thisRect[1]
+    )
+      return true;
+    else
+      return false;
   }
 }
 

@@ -1,3 +1,4 @@
+import { FelixScene } from '../main';
 import { Component } from './GameObject/Component';
 import { Transform } from './GameObject/Transform';
 
@@ -14,9 +15,11 @@ class GameObject{
   id: string;
   transform: Transform;
   renderables: Component[] = [];
+  scene: FelixScene | null;
 
-  constructor( parent: GameObject | null, name?: string ){
+  constructor( parent: GameObject | null, scene: FelixScene | null, name?: string ){
     this.transform = new Transform(this);
+    this.scene = scene;
     this.components = [ this.transform ];
     this.children = [];
     this.parent = parent;
@@ -29,7 +32,7 @@ class GameObject{
   }
 
   createEmptyChild( name: string ): GameObject {
-    let child = new GameObject( this, name );
+    let child = new GameObject( this, this.scene, name );
     this.childUpdate(1);
 
     this.children.push(child);

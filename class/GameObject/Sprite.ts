@@ -12,12 +12,11 @@ class Sprite extends Component {
     this.gameObject.renderables.push(this);
     this.name = 'Sprite';
 
-    this.definePublicValues = {
-
-    };
+    if(this.gameObject.scene)
+      this.gameObject.scene.renderers.push(this.gameObject);
 
     this.render = ( ctx: CanvasRenderingContext2D, canvas: HTMLCanvasElement ) => {
-
+      
     }
   }
 }
