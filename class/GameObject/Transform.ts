@@ -15,7 +15,7 @@ class Transform extends Component {
     this.name = 'Transform';
 
     this.position = new Position(0, 0);
-    this.scale = new Position(10, 10);
+    this.scale = new Position(1, 1);
     // this.rotation = new Rotation(0);
 
     this.definePublicValues = {
@@ -31,7 +31,7 @@ class Transform extends Component {
     trans.position = this.position;
     trans.scale = this.scale;
 
-    
+
 
     return trans;
   }
