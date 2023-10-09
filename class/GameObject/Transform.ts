@@ -31,7 +31,7 @@ class Transform extends Component {
     trans.position = this.position;
     trans.scale = this.scale;
 
-    
+
 
     return trans;
   }
