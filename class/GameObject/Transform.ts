@@ -31,7 +31,14 @@ class Transform extends Component {
     trans.position = this.position;
     trans.scale = this.scale;
 
+    if(this.gameObject.parent){
+      let parentTransform = this.gameObject.parent.transform.calculatedTransform();
 
+      trans.position.x += parentTransform.position.x;
+      trans.position.y += parentTransform.position.y;
+      trans.scale.x *= parentTransform.scale.x;
+      trans.scale.y *= parentTransform.scale.y;
+    }
 
     return trans;
   }

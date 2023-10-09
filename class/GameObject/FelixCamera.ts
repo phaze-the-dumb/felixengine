@@ -20,7 +20,9 @@ class FelixCamera extends Component{
     this.definePublicValues['scale'] = 'Number';
   }
 
-  worldToScreenSpaceBounding( transform: Transform ): number[] {
+  worldToScreenSpaceBounding( t: Transform ): number[] {
+    let transform = t.calculatedTransform();
+
     return [
       (transform.position.x - (transform.scale.x / 2) - this.gameObject.transform.position.x) * this.scale,
       (transform.position.y - (transform.scale.y / 2) - this.gameObject.transform.position.y) * this.scale,
