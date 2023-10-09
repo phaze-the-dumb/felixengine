@@ -14,10 +14,6 @@ class FelixCamera extends Component{
 
   constructor( go: GameObject ){
     super(go);
-
-    this.gameObject.addComponent<BoundingBox>(BoundingBox);
-    this.requires.push("Bounding Box");
-
     this.name = 'Camera';
 
     this.definePublicValues['backgroundColour'] = 'Colour';
@@ -58,7 +54,20 @@ class FelixCamera extends Component{
 
     for(let go of renderables) {
       for(let component of go.renderables){
-        if(component.render){
+        if(component.render && component.renderableLayer === "normal"){
+          let boundingBox = component.gameObject.getComponent<BoundingBox>(BoundingBox);
+          if(!boundingBox)
+            continue;
+
+          if(boundingBox.inScreen(this))
+            component.render(ctx, canvas, this);
+        }
+      }
+    }
+
+    for(let go of renderables) {
+      for(let component of go.renderables){
+        if(component.render && component.renderableLayer === "gizmos"){
           let boundingBox = component.gameObject.getComponent<BoundingBox>(BoundingBox);
           if(!boundingBox)
             continue;

@@ -12,6 +12,7 @@ class BoundingBox extends Component {
   constructor( go: GameObject ){
     super(go);
 
+    this.renderableLayer = 'gizmos';
     this.gameObject.renderables.push(this);
     this.name = 'Bounding Box';
 
@@ -22,6 +23,8 @@ class BoundingBox extends Component {
       position: 'Position',
       scale: 'Position'
     };
+
+    this.displayBox(true);
   }
 
   displayBox( display: boolean ){
@@ -45,23 +48,16 @@ class BoundingBox extends Component {
 
   getRect(): number[] {
     return [
-      (this.gameObject.transform.position.x + this.position.x) - (this.scale.x / 2 * this.gameObject.transform.scale.x),
-      (this.gameObject.transform.position.y + this.position.y) - (this.scale.y / 2 * this.gameObject.transform.scale.y),
-      (this.gameObject.transform.position.x + this.position.x) + (this.scale.x / 2 * this.gameObject.transform.scale.x),
-      (this.gameObject.transform.position.y + this.position.y) + (this.scale.y / 2 * this.gameObject.transform.scale.y)
+      ((this.gameObject.transform.position.x + this.position.x) - (this.scale.x / 2 * this.gameObject.transform.scale.x)) * 100,
+      ((this.gameObject.transform.position.y + this.position.y) - (this.scale.y / 2 * this.gameObject.transform.scale.y)) * 100,
+      ((this.gameObject.transform.position.x + this.position.x) + (this.scale.x / 2 * this.gameObject.transform.scale.x)) * 100,
+      ((this.gameObject.transform.position.y + this.position.y) + (this.scale.y / 2 * this.gameObject.transform.scale.y)) * 100
     ]
   }
 
   inScreen( camera: FelixCamera ): boolean {
     let thisRect = this.getRect();
     let cameraRect = camera.getRect();
-
-    console.log(
-      cameraRect[0] < thisRect[2] &&
-      cameraRect[1] < thisRect[3] &&
-      cameraRect[2] > thisRect[0] &&
-      cameraRect[3] > thisRect[1]
-    )
 
     if(
       cameraRect[0] < thisRect[2] &&
